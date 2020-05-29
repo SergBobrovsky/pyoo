@@ -14,6 +14,7 @@ import itertools
 import numbers
 import os
 import sys
+from string import ascii_uppercase
 
 import uno
 
@@ -209,11 +210,11 @@ def _col_name(index):
     'AA'
 
     """
-    for exp in itertools.count(1):
-        limit = 26 ** exp
-        if index < limit:
-            return ''.join(chr(ord('A') + index // (26 ** i) % 26) for i in range(exp-1, -1, -1))
-        index -= limit
+    buf = []
+    while index >= 0:
+        buf.append(ascii_uppercase[index % 26])
+        index = index // 26 - 1
+    return ''.join(buf[::-1])
 
 
 @str_repr

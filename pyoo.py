@@ -145,9 +145,9 @@ def _clean_slice(key, length):
     if not isinstance(stop, integer_types):
         raise TypeError('Cell indices must be integers, %s given.' % type(stop).__name__)
     if start < 0:
-        start = start + length
+        start += length
     if stop < 0:
-        stop = stop + length
+        stop += length
     start, stop = max(0, start), min(length, stop)
     if start == stop:
         raise ValueError('Cell slice can not be empty.')
